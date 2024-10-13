@@ -3,10 +3,10 @@ name: CI Workflow
 on:
   pull_request:
     branches:
-      - main  # Trigger for PRs targeting the main branch
+      - main  
   push:
     branches:
-      - main  # Trigger when code is pushed to the main branch after PR merge
+      - main  
 
 jobs:
   build:
