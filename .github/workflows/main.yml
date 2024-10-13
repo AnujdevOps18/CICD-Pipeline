@@ -3,13 +3,15 @@ name: CI Workflow
 on:
   pull_request:
     branches:
-      - main  
+      - main
+    types: [closed]  # Only run when the PR is closed (which includes merges)
   push:
     branches:
-      - main  
+      - main  # Also run on direct pushes to the main branch
 
 jobs:
   build:
+    if: ${{ github.event.pull_request.merged == true || github.event_name == 'push' }}  # Run only if the PR was merged or it's a push event
     runs-on: ubuntu-latest
 
     steps:
@@ -29,5 +31,3 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-   
